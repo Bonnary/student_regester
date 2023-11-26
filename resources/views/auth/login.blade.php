@@ -25,10 +25,11 @@
         <div class="card">
             <div class="card-body login-card-body">
                 <p class="login-box-msg">Sign in to start your session</p>
-
-                <form action={{URL::to("assets/index3.html")}} method="post">
+                <x-message></x-message>
+                <form action={{url('/login')}} method="post">
+                    @csrf
                     <div class="input-group mb-3">
-                        <input type="email" class="form-control" placeholder="Email">
+                        <input type="email" class="form-control" required name="email" placeholder="Email">
                         <div class="input-group-append">
                             <div class="input-group-text">
                                 <span class="fas fa-envelope"></span>
@@ -36,7 +37,7 @@
                         </div>
                     </div>
                     <div class="input-group mb-3">
-                        <input type="password" class="form-control" placeholder="Password">
+                        <input type="password" class="form-control" required name="password" placeholder="Password">
                         <div class="input-group-append">
                             <div class="input-group-text">
                                 <span class="fas fa-lock"></span>
@@ -54,13 +55,13 @@
                         </div>
 
                     </div>
+                    <div class="social-auth-links text-center mb-3">
+                        <button name="submit" type="submit" class="btn btn-block btn-primary">
+                            Sign in
+                        </button>
+                    </div>
                 </form>
 
-                <div class="social-auth-links text-center mb-3">
-                    <button type="submit" class="btn btn-block btn-primary">
-                        Sign in
-                    </button>
-                </div>
                 {{-- /.social-auth-links --}}
 
                 <p class="mb-1">
@@ -73,11 +74,9 @@
     {{-- /.login-box --}}
 
     {{-- jQuery --}}
-    <script src={{URL::to("assets/plugins/jquery/jquery.min.js")}}></script>
     {{-- Bootstrap 4 --}}
     <script src={{URL::to("assets/plugins/bootstrap/js/bootstrap.bundle.min.js")}}></script>
     {{-- AdminLTE App --}}
-    <script src={{URL::to("assets/dist/js/adminlte.min.js")}}></script>
 </body>
 
 </html>

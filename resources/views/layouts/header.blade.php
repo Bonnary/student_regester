@@ -150,7 +150,8 @@
                 <img src={{URL::to("assets/dist/img/user2-160x160.jpg")}} class="img-circle elevation-2" alt="User Image">
             </div>
             <div class="info">
-                <a href={{URL::to("assets/#")}} class="d-block">Alexander Pierce</a>
+                {{--? This will change depand on the user name from the database --}}
+                <a href={{URL::to("assets/#")}} class="d-block">{{Auth::user()->name}}</a>
             </div>
         </div>
 
@@ -159,8 +160,10 @@
         <nav class="mt-2">
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
 
+
+                @if (Auth::user()->role == 'admin')
                 <li class="nav-item">
-                    <a href={{route('dashboard')}} class="nav-link">
+                    <a href={{url('admin/dashboard')}} class="nav-link">
                         <i class="nav-icon fas fa-tachometer-alt"></i>
                         <p>
                             Dashboard
@@ -168,10 +171,29 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href={{route('adminList')}} class="nav-link">
+                    <a href={{url('admin/admin/list')}} class="nav-link">
                         <i class="nav-icon far fa-user"></i>
                         <p>
                             Admin
+                        </p>
+                    </a>
+                </li>
+                @elseif(Auth::user()->role == 'staff')
+                    <li class="nav-item">
+                    <a href={{url('staff/dashboard')}} class="nav-link">
+                        <i class="nav-icon fas fa-tachometer-alt"></i>
+                        <p>
+                            Dashboard
+                        </p>
+                    </a>
+                </li>
+                @endif
+
+                <li class="nav-item">
+                    <a href={{url('logout')}} class="nav-link">
+                        <i class="nav-icon far fa-user"></i>
+                        <p>
+                            Logout
                         </p>
                     </a>
                 </li>
