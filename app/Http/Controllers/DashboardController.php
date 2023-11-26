@@ -9,12 +9,12 @@ class DashboardController extends Controller
 {
     public function dashboard()
     {
+        $data['header_title'] = 'Dashboard';
         if (Auth::user()->role == 'admin') {
 
-            return view('admin.dashboard');
+            return view('admin.dashboard', $data);
         } else {
-            return view('staff.dashboard');
-
+            return view('staff.dashboard', $data);
         }
     }
 }
