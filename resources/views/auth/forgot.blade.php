@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Login</title>
+    <title>Forgot password</title>
 
     {{-- Google Font: Source Sans Pro --}}
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
@@ -24,9 +24,9 @@
         {{-- /.login-logo --}}
         <div class="card">
             <div class="card-body login-card-body">
-                <p class="login-box-msg">Sign in to start your session</p>
+                <p class="login-box-msg">Forgot password</p>
                 <x-message></x-message>
-                <form action={{url('/login')}} method="post">
+                <form action="" method="post">
                     @csrf
                     <div class="input-group mb-3">
                         <input type="email" class="form-control" required name="email" placeholder="Email">
@@ -36,37 +36,15 @@
                             </div>
                         </div>
                     </div>
-                    <div class="input-group mb-3">
-                        <input type="password" class="form-control" required name="password" placeholder="Password">
-                        <div class="input-group-append">
-                            <div class="input-group-text">
-                                <span class="fas fa-lock"></span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-8">
-                            <div class="icheck-primary">
-                                <input type="checkbox" id="remember">
-                                <label for="remember">
-                                    Remember Me
-                                </label>
-                            </div>
-                        </div>
 
-                    </div>
+
                     <div class="social-auth-links text-center mb-3">
                         <button name="submit" type="submit" class="btn btn-block btn-primary">
-                            Sign in
+                            Forgot
                         </button>
                     </div>
                 </form>
 
-                {{-- /.social-auth-links --}}
-
-                <p class="mb-1">
-                    <a href="{{url('forgot-password')}}">I forgot my password</a>
-                </p>
             </div>
             {{-- /.login-card-body --}}
         </div>

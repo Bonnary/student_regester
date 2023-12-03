@@ -14,10 +14,14 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-
+// ! Auth
 Route::get('/',[ AuthController::class, 'login']);
 Route::post('login', [AuthController::class, 'Authlogin']);
 Route::get('logout', [AuthController::class, 'Authlogout']);
+Route::get('forgot-password', [AuthController:: class, 'ForgotPassword']);
+Route::post('forgot-password', [AuthController::class, 'PostForgotPassword']);
+Route::get('reset/{token}', [AuthController::class, 'reset']);
+Route::post('reset/{token}', [AuthController::class, 'PostReset']);
 
 
 // Route::get('/', function () {
