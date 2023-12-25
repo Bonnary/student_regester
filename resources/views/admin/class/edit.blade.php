@@ -28,12 +28,12 @@
 
                                     <div class="form-group">
                                         <label>Room</label>
-                                        <input required name="room" type="text" class="form-control"
-                                            placeholder="Room name">
+                                        <input value="{{ old('room', $getRecord->room) }}" required name="room"
+                                            type="text" class="form-control" placeholder="Room name">
                                     </div>
                                     <select name="is_active" class="form-control">
                                         @foreach ($is_active as $role)
-                                            <option value="{{ $role }}" @selected($role == 'Active')>
+                                            <option value="{{ $role }}" @selected($role == (old('is_active', $getRecord->is_active) ? 'Active' : 'InActive'))>
                                                 {{ $role }}</option>
                                         @endforeach
                                     </select>

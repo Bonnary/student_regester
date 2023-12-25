@@ -156,19 +156,39 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href={{ url('admin/admin/list') }} class="nav-link {{ Request::segment(2) == 'admin' ? 'active' : '' }}">
+                        <a href={{ url('admin/admin/list') }}
+                            class="nav-link {{ Request::segment(2) == 'admin' ? 'active' : '' }}">
                             <i class="nav-icon far fa-user"></i>
                             <p>
                                 Admin
                             </p>
                         </a>
                     </li>
+                    <li class="nav-item">
+                        <a href={{ url('admin/class/list') }}
+                            class="nav-link {{ Request::segment(2) == 'class' ? 'active' : '' }}">
+                            <i class="nav-icon fa fa-school"></i>
+                            <p>
+                                Class
+                            </p>
+                        </a>
+                    </li>
                 @elseif(Auth::user()->role == 'staff')
                     <li class="nav-item">
-                        <a href={{ url('staff/dashboard') }} class="nav-link {{ Request::segment(2) == 'dashboard' ? 'active' : '' }}">
+                        <a href={{ url('staff/dashboard') }}
+                            class="nav-link {{ Request::segment(2) == 'dashboard' ? 'active' : '' }}">
                             <i class="nav-icon fas fa-tachometer-alt"></i>
                             <p>
                                 Dashboard
+                            </p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href={{ url('admin/class/list') }}
+                            class="nav-link {{ Request::segment(2) == 'class' ? 'active' : '' }}">
+                            <i class="nav-icon fa fa-school"></i>
+                            <p>
+                                Class
                             </p>
                         </a>
                     </li>

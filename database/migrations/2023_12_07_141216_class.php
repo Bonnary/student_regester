@@ -16,7 +16,6 @@ return new class extends Migration
             $table->string('room');
             $table->boolean('is_active');
             $table->integer('created_by');
-            $table->timestamps();
         });
     }
 
