@@ -7,7 +7,8 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1>Class List</h1>
+
+                        <h1>Class List (Total : {{ $getRecord->total() }})</h1>
                     </div>
                     <div class="col-sm-6" style="text-align: right;">
                         <a href="{{ url('admin/class/add') }}" class="btn btn-primary">Add New Class</a>
@@ -68,19 +69,20 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach ($getRecord as $value)
+
+                                        @for ($i = 0; $i < $getRecord->total(); $i++)
                                             <tr>
-                                                <td>{{ $value->id }}</td>
-                                                <td>{{ $value->room }}</td>
+                                                <td>{{ $i + 1 }}</td>
+                                                <td>{{ $getRecord[$i]->room }}</td>
                                                 <td>
-                                                    <a href="{{ url('admin/class/edit/' . $value->id) }}"
+                                                    <a href="{{ url('admin/class/edit/' . $getRecord[$i]->id) }}"
                                                         class="btn btn-primary">Edit</a>
-                                                    <a href="{{ url('admin/class/delete/' . $value->id) }}"
+                                                    <a href="{{ url('admin/class/delete/' . $getRecord[$i]->id) }}"
                                                         class="btn btn-danger">Delete</a>
                                                 </td>
 
                                             </tr>
-                                        @endforeach
+                                        @endfor
                                     </tbody>
                                 </table>
                             </div>

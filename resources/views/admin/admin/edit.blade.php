@@ -27,9 +27,8 @@
                                 <div class="card-body">
                                     <div class="form-group">
                                         <label>Email address</label>
-                                        <input required name="email" type="email"
-                                            value="{{ old('email', $getRecord->email) }}" class="form-control"
-                                            placeholder="email">
+                                        <input disabled type="email" value="{{ old('email', $getRecord->email) }}"
+                                            class="form-control" placeholder="email">
                                         {{-- ! this is for validate error --}}
                                         <p class="text-danger">{{ $errors->first('email') }}</p>
                                     </div>

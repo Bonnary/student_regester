@@ -79,22 +79,22 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach ($getRecord as $value)
+                                        @for ($i = 0; $i < $getRecord->total(); $i++)
                                             <tr>
-                                                <td>{{ $value->id }}</td>
-                                                <td>{{ $value->name }}</td>
-                                                <td>{{ $value->email }}</td>
-                                                <td>{{ $value->role }}</td>
-                                                <td>{{ date('d-m-Y h:i A', strtotime($value->created_at)) }}</td>
+                                                <td>{{ $i + 1 }}</td>
+                                                <td>{{ $getRecord[$i]->name }}</td>
+                                                <td>{{ $getRecord[$i]->email }}</td>
+                                                <td>{{ $getRecord[$i]->role }}</td>
+                                                <td>{{ date('d-m-Y h:i A', strtotime($getRecord[$i]->created_at)) }}</td>
                                                 <td>
-                                                    <a href="{{ url('admin/admin/edit/' . $value->id) }}"
+                                                    <a href="{{ url('admin/admin/edit/' . $getRecord[$i]->id) }}"
                                                         class="btn btn-primary">Edit</a>
-                                                    <a href="{{ url('admin/admin/delete/' . $value->id) }}"
+                                                    <a href="{{ url('admin/admin/delete/' . $getRecord[$i]->id) }}"
                                                         class="btn btn-danger">Delete</a>
                                                 </td>
 
                                             </tr>
-                                        @endforeach
+                                        @endfor
                                     </tbody>
                                 </table>
                             </div>

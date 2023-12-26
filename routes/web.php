@@ -43,29 +43,20 @@ Route::group(['middleware' => 'admin'], function () {
     // ! the only reason we use get and not post because we don't need Request $request
     Route::get('admin/admin/delete/{id}', [AdminController::class, 'delete']);
 
-
-    // ! Class
-    Route::get('admin/class/list', [ClassController::class, 'list']);
-    Route::get('admin/class/add', [ClassController::class, 'add']);
-    Route::post('admin/class/add', [ClassController::class, 'insert']);
-    Route::get('admin/class/edit/{id}', [ClassController::class, 'edit']);
-    Route::post('admin/class/edit/{id}', [ClassController::class, 'update']);
-    Route::get('admin/class/delete/{id}', [ClassController::class, 'delete']);
-
-    // ! Student
-    Route::get('admin/student/list', [ClassController::class, 'list']);
-
 });
 
 Route::group(['middleware' => 'staff'], function () {
     Route::get('staff/dashboard', [DashboardController::class, 'dashboard']);
 
-    // ! Class
-    Route::get('admin/class/list', [ClassController::class, 'list']);
-    Route::get('admin/class/add', [ClassController::class, 'add']);
-    Route::post('admin/class/add', [ClassController::class, 'insert']);
-
-    Route::get('admin/class/edit/{id}', [ClassController::class, 'edit']);
-    Route::post('admin/class/edit/{id}', [ClassController::class, 'update']);
-    Route::get('admin/class/delete/{id}', [ClassController::class, 'delete']);
 });
+
+// ! Class
+Route::get('admin/class/list', [ClassController::class, 'list']);
+Route::get('admin/class/add', [ClassController::class, 'add']);
+Route::post('admin/class/add', [ClassController::class, 'insert']);
+Route::get('admin/class/edit/{id}', [ClassController::class, 'edit']);
+Route::post('admin/class/edit/{id}', [ClassController::class, 'update']);
+Route::get('admin/class/delete/{id}', [ClassController::class, 'delete']);
+// ! Student
+Route::get('admin/student/list', [ClassController::class, 'list']);
+

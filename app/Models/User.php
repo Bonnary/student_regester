@@ -61,8 +61,8 @@ class User extends Authenticatable
         $return = self::select("users.*")->where('is_delete', '=', false);
 
         // ? this is for search
-        if(!empty(Request::get('email'))){
-            $return = $return->where('email','like', '%'. Request::get('email') . '%');
+        if (!empty(Request::get('email'))) {
+            $return = $return->where('email', 'like', '%' . Request::get('email') . '%');
         }
         if (!empty(Request::get('name'))) {
             $return = $return->where('name', 'like', '%' . Request::get('name') . '%');
@@ -70,7 +70,7 @@ class User extends Authenticatable
         if (!empty(Request::get('date'))) {
             $return = $return->whereDate('created_at', '=', Request::get('date'));
         }
-        $return = $return->orderBy('id', 'desc')->paginate(20);
+        $return = $return->orderBy('id')->paginate(20);
         return $return;
     }
     static function getSingleAccount($id)
