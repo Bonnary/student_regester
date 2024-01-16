@@ -7,10 +7,10 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1>Class List</h1>
+                        <h1>Student List (Total : {{ $getRecord->total() }})</h1>
                     </div>
                     <div class="col-sm-6" style="text-align: right;">
-                        <a href="{{ url('admin/class/add') }}" class="btn btn-primary">Add New Class</a>
+                        <a href="{{ url('admin/student/add') }}" class="btn btn-primary">Add New Student</a>
                     </div>
 
                 </div>
@@ -25,7 +25,7 @@
                     <div class="col-md-12">
                         <div class="card">
                             <div class="card-header">
-                                <h3 class="card-title">Search User</h3>
+                                <h3 class="card-title">Search Student</h3>
 
 
                             </div>
@@ -42,7 +42,7 @@
                                         <div class="form-group col-md-3">
                                             <button class="btn btn-primary" type="submit"
                                                 style="margin-top: 30px">Search</button>
-                                            <a href="{{ url('admin/class/list') }}" class="btn btn-success" type="submit"
+                                            <a href="{{ url('admin/student/list') }}" class="btn btn-success" type="submit"
                                                 style="margin-top: 30px">Clear</a>
                                         </div>
                                     </div>
@@ -55,7 +55,7 @@
                         <x-message></x-message>
                         <div class="card">
                             <div class="card-header">
-                                <h3 class="card-title">Class Table </h3>
+                                <h3 class="card-title">Student Table </h3>
                             </div>
                             <!-- /.card-header -->
                             <div class="card-body p-0">
@@ -68,19 +68,19 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach ($getRecord as $value)
+                                        @for ($i = 0; $i < $getRecord->total(); $i++)
                                             <tr>
-                                                <td>{{ $value->id }}</td>
-                                                <td>{{ $value->room }}</td>
+                                                <td>{{ $i + 1 }}</td>
+                                                <td>{{ $getRecord[$i]->room }}</td>
                                                 <td>
-                                                    <a href="{{ url('admin/class/edit/' . $value->id) }}"
+                                                    <a href="{{ url('admin/class/edit/' . $getRecord[$i]->id) }}"
                                                         class="btn btn-primary">Edit</a>
-                                                    <a href="{{ url('admin/class/delete/' . $value->id) }}"
+                                                    <a href="{{ url('admin/class/delete/' . $getRecord[$i]->id) }}"
                                                         class="btn btn-danger">Delete</a>
                                                 </td>
 
                                             </tr>
-                                        @endforeach
+                                        @endfor
                                     </tbody>
                                 </table>
                             </div>

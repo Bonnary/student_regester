@@ -52,11 +52,12 @@ return new class extends Migration
                 'grade_id'
             )->nullable();
             $table->integer(
-                'gamily_situation_id'
+                'family_situation_id'
             );
             $table->integer(
                 'student_job_id'
             );
+            $table->boolean('is_active')->default(true);
             $table->integer('create_by');
             $table->timestamps();
         });

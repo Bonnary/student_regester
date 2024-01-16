@@ -19,14 +19,16 @@ class UserSeeder extends Seeder
             'email' => 'admin@gmail.com',
             'password' => Hash::make('password'),
             'role' => 'admin',
-            'created_at' => now()
+            'created_at' => now(),
+            'updated_at' => now()
         ]);
         DB::table('users')->insert([
             'name' => 'staff',
             'email' => 'staff@gmail.com',
             'password' => Hash::make('password'),
             'role' => 'staff',
-            'created_at' => now()
+            'created_at' => now(),
+            'updated_at' => now()
 
         ]);
     }

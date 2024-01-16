@@ -4,6 +4,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ClassController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\StudentController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -50,13 +51,17 @@ Route::group(['middleware' => 'staff'], function () {
 
 });
 
-// ! Class
+// ! ClassZ
 Route::get('admin/class/list', [ClassController::class, 'list']);
 Route::get('admin/class/add', [ClassController::class, 'add']);
 Route::post('admin/class/add', [ClassController::class, 'insert']);
 Route::get('admin/class/edit/{id}', [ClassController::class, 'edit']);
 Route::post('admin/class/edit/{id}', [ClassController::class, 'update']);
 Route::get('admin/class/delete/{id}', [ClassController::class, 'delete']);
+
 // ! Student
-Route::get('admin/student/list', [ClassController::class, 'list']);
+Route::get('admin/student/list', [StudentController::class, 'list']);
+Route::get('admin/student/add', [StudentController::class, 'add']);
+Route::post('admin/student/add', [StudentController::class, 'insert']);
+
 
