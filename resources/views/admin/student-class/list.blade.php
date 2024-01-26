@@ -7,11 +7,10 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-
-                        <h1>Class List (Total : {{ $getRecord->total() }})</h1>
+                        <h1>Student List (Total : {{ $getRecord->total() }})</h1>
                     </div>
                     <div class="col-sm-6" style="text-align: right;">
-                        <a href="{{ url('admin/class/add') }}" class="btn btn-primary">Add New Class</a>
+                        <a href="{{ url('admin/student-class/add') }}" class="btn btn-primary">Add student to class</a>
                     </div>
 
                 </div>
@@ -26,7 +25,7 @@
                     <div class="col-md-12">
                         <div class="card">
                             <div class="card-header">
-                                <h3 class="card-title">Search Class</h3>
+                                <h3 class="card-title">Search Student</h3>
 
 
                             </div>
@@ -36,14 +35,20 @@
                                     <div class="row">
 
                                         <div class="form-group col-md-3">
-                                            <label>Room</label>
-                                            <input name="room" value="{{ Request::get('room') }}" type="text"
-                                                class="form-control" placeholder="Room Number">
+                                            <label>Student ID</label>
+                                            <input name="student_id" value="{{ Request::get('student_id') }}" type="text"
+                                                class="form-control" placeholder="ID">
                                         </div>
+                                        <div class="form-group col-md-3">
+                                            <label>Class Room</label>
+                                            <input name="class_room" value="{{ Request::get('class_room') }}" type="text"
+                                                class="form-control" placeholder="English name">
+                                        </div>
+
                                         <div class="form-group col-md-3">
                                             <button class="btn btn-primary" type="submit"
                                                 style="margin-top: 30px">Search</button>
-                                            <a href="{{ url('admin/class/list') }}" class="btn btn-success" type="submit"
+                                            <a href="{{ url('admin/student-class/list') }}" class="btn btn-success" type="submit"
                                                 style="margin-top: 30px">Clear</a>
                                         </div>
                                     </div>
@@ -56,7 +61,7 @@
                         <x-message></x-message>
                         <div class="card">
                             <div class="card-header">
-                                <h3 class="card-title">Class Table </h3>
+                                <h3 class="card-title">Student Table </h3>
                             </div>
                             <!-- /.card-header -->
                             <div class="card-body p-0">
@@ -64,20 +69,19 @@
                                     <thead>
                                         <tr>
                                             <th>#</th>
-                                            <th>Name</th>
+                                            <th>Class Room</th>
+                                            <th>Student ID</th>
                                             <th>Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-
                                         @for ($i = 0; $i < $getRecord->total(); $i++)
                                             <tr>
                                                 <td>{{ $i + 1 }}</td>
-                                                <td>{{ $getRecord[$i]->room }}</td>
+                                                <td>{{ $getRecord[$i]->class_room }}</td>
+                                                <td>{{ $getRecord[$i]->student_id }}</td>
                                                 <td>
-                                                    <a href="{{ url('admin/class/edit/' . $getRecord[$i]->id) }}"
-                                                        class="btn btn-primary">Edit</a>
-                                                    <a href="{{ url('admin/class/delete/' . $getRecord[$i]->id) }}"
+                                                    <a href="{{ url('admin/student-class/delete/' . $getRecord[$i]->id) }}"
                                                         class="btn btn-danger">Delete</a>
                                                 </td>
 

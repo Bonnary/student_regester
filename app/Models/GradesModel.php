@@ -14,4 +14,9 @@ class GradesModel extends Model
         $return = self::all();
         return $return;
     }
+
+    static function getSingleGradeByID($id){
+        $return = self::where('id', $id)->first();
+        return $return;
+    }
 }

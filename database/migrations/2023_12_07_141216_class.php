@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('class', function (Blueprint $table) {
             $table->id();
             $table->string('room');
-            $table->boolean('is_active');
+            $table->boolean('is_active')->default(true);
             $table->integer('created_by');
         });
     }

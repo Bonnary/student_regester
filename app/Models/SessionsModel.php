@@ -14,4 +14,9 @@ class SessionsModel extends Model
         $return = self::all();
         return $return;
     }
+
+    static function getSingleSessionByID($id){
+        $return = self::where('id', $id)->first();
+        return $return;
+    }
 }

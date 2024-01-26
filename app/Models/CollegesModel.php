@@ -20,4 +20,9 @@ class CollegesModel extends Model
         $return = self::where('id', $id)->get();
         return $return->first()->college_name;
     }
+
+    static function getCollegeByID($id){
+        $return = self::where('id', $id)->first();
+        return $return;
+    }
 }

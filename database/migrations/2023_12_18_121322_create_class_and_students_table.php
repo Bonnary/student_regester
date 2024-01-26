@@ -13,10 +13,10 @@ return new class extends Migration
     {
         Schema::create('class_and_students', function (Blueprint $table) {
             $table->id();
-            $table->integer(
+            $table->string(
                 'student_id'
             );
-            $table->integer('class_id');
+            $table->integer('class_room');
         });
     }
 

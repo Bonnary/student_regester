@@ -19,6 +19,7 @@ class StudentClass extends Model
         if (!empty(Request::get('room'))) {
             $return = $return->where('room', 'like', '%' . Request::get('room') . '%');
         }
+
         $return = $return->orderBy('id', 'desc')->paginate(20);
         return $return;
     }
@@ -26,5 +27,10 @@ class StudentClass extends Model
     static function getSingleClass($id)
     {
         return self::find($id);
+    }
+
+    static function getClassRaw()
+    {
+        return self::where('is_active', true)->get();
     }
 }

@@ -15,4 +15,9 @@ class SubjectsAndCollegesModel extends Model
         $return = self::all();
         return $return;
     }
+
+    static function getSingleSubjectAndCollegeByID($id){
+        $return = self::where('id', $id)->first();
+        return $return;
+    }
 }

@@ -14,4 +14,9 @@ class StudentJobsModel extends Model
         $return = self::all();
         return $return;
     }
+
+    static function getSingleStudentJobByID($id){
+        $return = self::where('id', $id)->first();
+        return $return;
+    }
 }

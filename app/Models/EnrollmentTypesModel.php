@@ -16,4 +16,9 @@ class EnrollmentTypesModel extends Model
         return $return;
     }
 
+    static function getSingleEnrollmentTypeByID($id){
+        $return = self::where('id', $id)->first();
+        return $return;
+    }
+
 }

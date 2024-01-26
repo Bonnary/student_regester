@@ -35,9 +35,19 @@
                                     <div class="row">
 
                                         <div class="form-group col-md-3">
-                                            <label>Room</label>
-                                            <input name="room" value="{{ Request::get('room') }}" type="text"
-                                                class="form-control" placeholder="Room Number">
+                                            <label>Student ID</label>
+                                            <input name="student_id" value="{{ Request::get('student_id') }}" type="text"
+                                                class="form-control" placeholder="ID">
+                                        </div>
+                                        <div class="form-group col-md-3">
+                                            <label>English name</label>
+                                            <input name="english_name" value="{{ Request::get('english_name') }}" type="text"
+                                                class="form-control" placeholder="English name">
+                                        </div>
+                                        <div class="form-group col-md-3">
+                                            <label>Generation</label>
+                                            <input name="generation" value="{{ Request::get('generation') }}" type="text"
+                                                class="form-control" placeholder="Generation">
                                         </div>
                                         <div class="form-group col-md-3">
                                             <button class="btn btn-primary" type="submit"
@@ -63,7 +73,9 @@
                                     <thead>
                                         <tr>
                                             <th>#</th>
+                                            <th>ID</th>
                                             <th>Name</th>
+                                            <th>Generation</th>
                                             <th>Action</th>
                                         </tr>
                                     </thead>
@@ -71,11 +83,13 @@
                                         @for ($i = 0; $i < $getRecord->total(); $i++)
                                             <tr>
                                                 <td>{{ $i + 1 }}</td>
-                                                <td>{{ $getRecord[$i]->room }}</td>
+                                                <td>{{ $getRecord[$i]->student_id }}</td>
+                                                <td>{{ $getRecord[$i]->english_name }}</td>
+                                                <td>{{ $getRecord[$i]->generation }}</td>
                                                 <td>
-                                                    <a href="{{ url('admin/class/edit/' . $getRecord[$i]->id) }}"
+                                                    <a href="{{ url('admin/student/edit/' . $getRecord[$i]->id) }}"
                                                         class="btn btn-primary">Edit</a>
-                                                    <a href="{{ url('admin/class/delete/' . $getRecord[$i]->id) }}"
+                                                    <a href="{{ url('admin/student/delete/' . $getRecord[$i]->id) }}"
                                                         class="btn btn-danger">Delete</a>
                                                 </td>
 

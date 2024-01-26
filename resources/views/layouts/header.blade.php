@@ -182,6 +182,15 @@
                             </p>
                         </a>
                     </li>
+                    <li class="nav-item">
+                        <a href={{ url('admin/student-class/list') }}
+                            class="nav-link {{ Request::segment(2) == 'student-class' ? 'active' : '' }}">
+                            <i class="nav-icon fa fa-school"></i>
+                            <p>
+                                Student Class
+                            </p>
+                        </a>
+                    </li>
                 @elseif(Auth::user()->role == 'staff')
                     <li class="nav-item">
                         <a href={{ url('staff/dashboard') }}
@@ -207,6 +216,16 @@
                             <i class="nav-icon fa fa-user-graduate"></i>
                             <p>
                                 Student
+                            </p>
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a href={{ url('admin/student-class/list') }}
+                            class="nav-link {{ Request::segment(2) == 'student-class' ? 'active' : '' }}">
+                            <i class="nav-icon fa fa-school"></i>
+                            <p>
+                                Student Class
                             </p>
                         </a>
                     </li>

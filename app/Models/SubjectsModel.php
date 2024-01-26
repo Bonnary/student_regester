@@ -20,4 +20,9 @@ class SubjectsModel extends Model
         $return = self::where('id', $id)->get();
         return $return->first()->subject_name;
     }
+
+    static function getSubjectByID($id){
+        $return = self::where('id', $id)->first();
+        return $return;
+    }
 }

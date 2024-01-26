@@ -14,4 +14,9 @@ class FamilySituationModel extends Model
         $return = self::all();
         return $return;
     }
+
+    static function getSingleFamilySituationByID($id){
+        $return = self::where('id', $id)->first();
+        return $return;
+    }
 }

@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\ClassAndStudentsController;
 use App\Http\Controllers\ClassController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\StudentController;
@@ -51,7 +52,7 @@ Route::group(['middleware' => 'staff'], function () {
 
 });
 
-// ! ClassZ
+// ! Class
 Route::get('admin/class/list', [ClassController::class, 'list']);
 Route::get('admin/class/add', [ClassController::class, 'add']);
 Route::post('admin/class/add', [ClassController::class, 'insert']);
@@ -63,5 +64,13 @@ Route::get('admin/class/delete/{id}', [ClassController::class, 'delete']);
 Route::get('admin/student/list', [StudentController::class, 'list']);
 Route::get('admin/student/add', [StudentController::class, 'add']);
 Route::post('admin/student/add', [StudentController::class, 'insert']);
+Route::get( 'admin/student/edit/{id}', [StudentController::class, 'edit']);
+Route::post('admin/student/edit/{id}', [StudentController::class, 'update']);
+Route::get('admin/student/delete/{id}', [StudentController::class, 'delete']);
+
+// ! Student Class
+Route::get('admin/student-class/list', [ClassAndStudentsController::class, 'list']);
+Route::get('admin/student-class/add', [ClassAndStudentsController::class, 'add']);
+Route::post('admin/student-class/add', [ClassAndStudentsController::class, 'insert']);
 
 
