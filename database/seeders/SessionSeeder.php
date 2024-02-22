@@ -14,10 +14,10 @@ class SessionSeeder extends Seeder
     public function run(): void
     {
         $session = [
-            'ព្រឹក',
-            'រសៀល',
-            'ល្ងាច',
-            'ចុងសប្តាហ៍'
+            'Morning',
+            'Afternoon',
+            'Evening',
+            'Weekend'
         ];
 
         foreach ($session as $sub) {

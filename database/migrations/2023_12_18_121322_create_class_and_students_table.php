@@ -17,6 +17,10 @@ return new class extends Migration
                 'student_id'
             );
             $table->integer('class_room');
+            $table->integer('generation');
+            $table->integer('day_id');
+            $table->integer('session_id');
+            $table->integer('subjects_id');
         });
     }
 
