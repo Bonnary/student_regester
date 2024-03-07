@@ -49,8 +49,9 @@ class StudentController extends Controller
     {
         // ! add subject
         $subect_and_college = new SubjectsAndCollegesModel();
-        $subect_and_college->subject_id = $request->subject_id;
-        $subect_and_college->college_id = $request->college_id;
+        list($subject_ID, $college_ID) = explode('|', $request->subject_and_college);
+        $subect_and_college->subject_id = $subject_ID;
+        $subect_and_college->college_id = $college_ID;
         $subect_and_college_id = $subect_and_college->save();
 
         // ! add parent info
@@ -67,7 +68,6 @@ class StudentController extends Controller
 
         // ! add student
         $student = new StudentModel();
-        $student->student_id = $request->student_id;
         $student->generation = $request->generation;
         $student->khmer_name = $request->khmer_name;
         $student->english_name = $request->english_name;

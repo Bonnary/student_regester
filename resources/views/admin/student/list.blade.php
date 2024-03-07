@@ -83,7 +83,7 @@
                                         @for ($i = 0; $i < $getRecord->total(); $i++)
                                             <tr>
                                                 <td>{{ $i + 1 }}</td>
-                                                <td>{{ $getRecord[$i]->student_id }}</td>
+                                                <td>{{ $getRecord[$i]->id }}</td>
                                                 <td>{{ $getRecord[$i]->english_name }}</td>
                                                 <td>{{ $getRecord[$i]->generation }}</td>
                                                 <td>
