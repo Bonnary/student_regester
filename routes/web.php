@@ -3,6 +3,7 @@
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ClassAndStudentsController;
+use App\Http\Controllers\ExaminationsController;
 use App\Http\Controllers\ClassController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\StudentController;
@@ -44,6 +45,42 @@ Route::group(['middleware' => 'admin'], function () {
     Route::post('admin/admin/edit/{id}', [AdminController::class, 'update']);
     // ! the only reason we use get and not post because we don't need Request $request
     Route::get('admin/admin/delete/{id}', [AdminController::class, 'delete']);
+
+    Route::get('admin/examinations/exam/list', [ExaminationsController::class, 'exam_list']);
+    Route::get('admin/examinations/exam/add', [ExaminationsController::class, 'exam_add']);
+    Route::post('admin/examinations/exam/add', [ExaminationsController::class, 'exam_insert']);
+    Route::get('admin/examinations/exam/edit/{id}', [ExaminationsController::class, 'exam_edit']);
+    Route::post('admin/examinations/exam/edit/{id}', [ExaminationsController::class, 'exam_update']);
+    Route::get('admin/examinations/exam/delete/{id}', [ExaminationsController::class, 'exam_delete']);
+
+    // ! Exam Schedule
+    Route::get('admin/examinations/exam_schedule', [ExaminationsController::class, 'exam_schedule']);
+    Route::post('admin/examinations/exam_schedule_insert', [ExaminationsController::class, 'exam_schedule_insert']);
+
+    // ! Mark Register
+    Route::get('admin/examinations/marks_register', [ExaminationsController::class, 'marks_register']);
+    Route::post('admin/examinations/exam_schedule_insert', [ExaminationsController::class, 'exam_schedule_insert']);
+
+    Route::get('admin/examinations/exam_schedule', [ExaminationsController::class, 'exam_schedule']);
+    Route::post('admin/examinations/exam_schedule_insert', [ExaminationsController::class, 'exam_schedule_insert']);
+
+    Route::post('admin/examinations/marks_register', [ExaminationsController::class, 'marks_register']);
+    Route::post('admin/examinations/submit_marks_register', [ExaminationsController::class, 'submit_marks_register']);
+    Route::post('admin/examinations/single_submit_marks_register', [ExaminationsController::class, 'single_submit_marks_register']);
+
+    Route::get('admin/examinations/marks_grade', [ExaminationsController::class, 'marks_grade']);
+    Route::get('admin/examinations/marks_grade/add', [ExaminationsController::class, 'marks_grade_add']);
+    Route::post('admin/examinations/marks_grade/add', [ExaminationsController::class, 'marks_grade_insert']);
+    Route::get('admin/examinations/marks_grade/edit/{id}', [ExaminationsController::class, 'marks_grade_edit']);
+    Route::post('admin/examinations/marks_grade/edit/{id}', [ExaminationsController::class, 'marks_grade_update']);
+    Route::get('admin/examinations/marks_grade/delete/{id}', [ExaminationsController::class, 'marks_grade_delete']);
+
+
+
+});
+
+Route::group(['middleware' => 'staff'], function () {
+    Route::get('staff/dashboard', [DashboardController::class, 'dashboard']);
 
 });
 

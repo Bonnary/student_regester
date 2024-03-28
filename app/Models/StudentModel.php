@@ -43,4 +43,13 @@ class StudentModel extends Model
         $return = self::where('id', $id)->first();
         return $return;
     }
+
+    static function getStudentClass($class_id)
+    {
+        return self::select('students.*')
+                ->where('students.is_active','=',0)
+                ->where('students.subjects_and_colleges_id','=',$class_id)
+                ->orderBy('students.id','desc')
+                ->get();
+    }
 }
