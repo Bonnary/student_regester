@@ -43,4 +43,32 @@ class StudentModel extends Model
         $return = self::where('id', $id)->first();
         return $return;
     }
+
+    static function getStudentClass($class_id)
+    {
+        $class_with_student = ClassAndStudentsModel::getSingle($class_id);
+        $students = [];
+        if (!empty($class_with_student)) {
+            array_push($students, self::getSingleStudent($class_with_student->student_id));
+            return $students;
+        } else {
+            return [];
+        }
+
+    }
+
+    static function getStudentByClassID($class_id)
+    {
+        return self::select('students.*')
+        ->where('students.is_active', '=', 0)
+            ->where('students.subjects_and_colleges_id', '=', $class_id)
+            ->orderBy('students.id', 'desc')
+            ->get();
+    }
+
+    //Create function
+    static public function getAttendance($student_id, $class_id, $attendance_date)
+    {
+        return StudentAttendanceModel::CheckAlreadyAttendance($student_id, $class_id, $attendance_date);
+    }
 }

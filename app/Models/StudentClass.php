@@ -33,4 +33,7 @@ class StudentClass extends Model
     {
         return self::where('is_active', true)->get();
     }
+
+
+
 }

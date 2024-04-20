@@ -41,8 +41,8 @@
                                         </div>
                                         <div class="form-group col-md-3">
                                             <label>English name</label>
-                                            <input name="english_name" value="{{ Request::get('english_name') }}" type="text"
-                                                class="form-control" placeholder="English name">
+                                            <input name="english_name" value="{{ Request::get('english_name') }}"
+                                                type="text" class="form-control" placeholder="English name">
                                         </div>
                                         <div class="form-group col-md-3">
                                             <label>Generation</label>
@@ -75,22 +75,85 @@
                                             <th>#</th>
                                             <th>ID</th>
                                             <th>Name</th>
+                                            <th>Gender</th>
+                                            <th>Major</th>
                                             <th>Generation</th>
                                             <th>Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
+
+                                        @php
+                                            use App\Models\SubjectsAndCollegesModel;
+                                            use App\Models\SubjectsModel;
+
+                                        @endphp
+
+
                                         @for ($i = 0; $i < $getRecord->total(); $i++)
+                                            @php
+
+                                                $subjects_and_college = SubjectsAndCollegesModel::getSingleSubjectAndCollegeByID(
+                                                    $getRecord[$i]->subjects_and_colleges_id,
+                                                );
+
+                                                $subject = SubjectsModel::getSubjectByID(
+                                                    $subjects_and_college->subject_id,
+                                                );
+
+                                            @endphp
+
+
+                                            <div class="modal fade" id="popUp" tabindex="-1" role="dialog"
+                                                aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                <div class="modal-dialog" role="document">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                                                            <button type="button" class="close" data-dismiss="modal"
+                                                                aria-label="Close">
+                                                                <span aria-hidden="true">&times;</span>
+                                                            </button>
+                                                        </div>
+                                                        <div
+                                                            class="modal-body d-flex justify-content-center align-items-center flex-lg-column">
+                                                            <img src="{{ $getRecord[$i]->image }}" style="width: 10rem"
+                                                                alt="..." class="img-thumbnail">
+
+                                                            <div class="container">
+                                                                <div class="row">
+                                                                    <div class="col-sm-6">Hello</div>
+                                                                    <div class="col-sm-6">Hello</div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        {{-- <div class="modal-footer">
+
+                                                            <button type="button" class="btn btn-primary">Close</button>
+                                                        </div> --}}
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            {{-- !Table --}}
                                             <tr>
                                                 <td>{{ $i + 1 }}</td>
                                                 <td>{{ $getRecord[$i]->id }}</td>
                                                 <td>{{ $getRecord[$i]->english_name }}</td>
+                                                <td>{{ $getRecord[$i]->sex }}</td>
+                                                <td>{{ $subject->subject_name }}</td>
                                                 <td>{{ $getRecord[$i]->generation }}</td>
                                                 <td>
+
+                                                    <button type="button" class="btn btn-secondary" data-toggle="modal"
+                                                        data-target="#popUp">
+                                                        Detail
+                                                    </button>
                                                     <a href="{{ url('admin/student/edit/' . $getRecord[$i]->id) }}"
                                                         class="btn btn-primary">Edit</a>
                                                     <a href="{{ url('admin/student/delete/' . $getRecord[$i]->id) }}"
                                                         class="btn btn-danger">Delete</a>
+
                                                 </td>
 
                                             </tr>

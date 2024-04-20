@@ -16,8 +16,8 @@ class SubjectsSeeder extends Seeder
         $subject = [
             'English for Communication',
             'Teaching English',
-            'Finance and Banking',
-            'Development Economics',
+            'Networking',
+            'Programming',
             'Law',
             'Public Administration',
             'Diplomatic Law',

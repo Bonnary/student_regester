@@ -1,10 +1,12 @@
 <?php
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\AttendanceController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ClassAndStudentsController;
 use App\Http\Controllers\ClassController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\ExaminationsController;
 use App\Http\Controllers\StudentController;
 use Illuminate\Support\Facades\Route;
 
@@ -74,3 +76,42 @@ Route::get('admin/student-class/add', [ClassAndStudentsController::class, 'add']
 Route::post('admin/student-class/add', [ClassAndStudentsController::class, 'insert']);
 
 
+// ! Attendance
+Route::get('admin/attendance/student', [AttendanceController::class, 'AttendanceStudent']);
+Route::post('admin/attendance/student/save', [AttendanceController::class, 'AttendanceStudentSubmit']);
+// ! Attendance Report
+Route::get('admin/attendance/report', [AttendanceController::class, 'AttendanceReport']);
+Route::post('admin/attendance/report', [AttendanceController::class, 'AttendanceReport']);
+Route::post('admin/attendance/report_export_excel', [AttendanceController::class, 'AttendanceReportExportExcel']);
+
+
+
+
+Route::get('admin/examinations/exam/list', [ExaminationsController::class, 'exam_list']);
+Route::get('admin/examinations/exam/add', [ExaminationsController::class, 'exam_add']);
+Route::post('admin/examinations/exam/add', [ExaminationsController::class, 'exam_insert']);
+Route::get('admin/examinations/exam/edit/{id}', [ExaminationsController::class, 'exam_edit']);
+Route::post('admin/examinations/exam/edit/{id}', [ExaminationsController::class, 'exam_update']);
+Route::get('admin/examinations/exam/delete/{id}', [ExaminationsController::class, 'exam_delete']);
+
+// ! Exam Schedule
+Route::get('admin/examinations/exam_schedule', [ExaminationsController::class, 'exam_schedule']);
+Route::post('admin/examinations/exam_schedule_insert', [ExaminationsController::class, 'exam_schedule_insert']);
+
+// ! Mark Register
+Route::get('admin/examinations/marks_register', [ExaminationsController::class, 'marks_register']);
+Route::post('admin/examinations/exam_schedule_insert', [ExaminationsController::class, 'exam_schedule_insert']);
+
+Route::get('admin/examinations/exam_schedule', [ExaminationsController::class, 'exam_schedule']);
+Route::post('admin/examinations/exam_schedule_insert', [ExaminationsController::class, 'exam_schedule_insert']);
+
+// Route::post('admin/examinations/marks_register', [ExaminationsController::class, 'marks_register']);
+Route::post('admin/examinations/submit_marks_register', [ExaminationsController::class, 'submit_marks_register']);
+Route::post('admin/examinations/single_submit_marks_register', [ExaminationsController::class, 'single_submit_marks_register']);
+
+Route::get('admin/examinations/marks_grade', [ExaminationsController::class, 'marks_grade']);
+Route::get('admin/examinations/marks_grade/add', [ExaminationsController::class, 'marks_grade_add']);
+Route::post('admin/examinations/marks_grade/add', [ExaminationsController::class, 'marks_grade_insert']);
+Route::get('admin/examinations/marks_grade/edit/{id}', [ExaminationsController::class, 'marks_grade_edit']);
+Route::post('admin/examinations/marks_grade/edit/{id}', [ExaminationsController::class, 'marks_grade_update']);
+Route::get('admin/examinations/marks_grade/delete/{id}', [ExaminationsController::class, 'marks_grade_delete']);

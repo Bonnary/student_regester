@@ -48,11 +48,12 @@ class StudentController extends Controller
     function insert(Request $request)
     {
         // ! add subject
-        $subect_and_college = new SubjectsAndCollegesModel();
+        // $subect_and_college = new SubjectsAndCollegesModel();
         list($subject_ID, $college_ID) = explode('|', $request->subject_and_college);
-        $subect_and_college->subject_id = $subject_ID;
-        $subect_and_college->college_id = $college_ID;
-        $subect_and_college_id = $subect_and_college->save();
+        // $subect_and_college->subject_id = $subject_ID;
+        // $subect_and_college->college_id = $college_ID;
+        $subect_and_college_id =
+            SubjectsAndCollegesModel::upsertDB($subject_ID, $college_ID);
 
         // ! add parent info
         $parents_info = new ParentsInfoModel();
@@ -96,12 +97,9 @@ class StudentController extends Controller
 
     function update($id, Request $request)
     {
-        // dd($request->all());
+
         // ! add subject
-        $subect_and_college = new SubjectsAndCollegesModel();
-        $subect_and_college->subject_id = $request->subject_id;
-        $subect_and_college->college_id = $request->college_id;
-        $subect_and_college_id = $subect_and_college->save();
+        $subect_and_college_id = SubjectsAndCollegesModel::upsertDB($request->subject_id, $request->college_id);
 
         // ! add parent info
         $parents_info = new ParentsInfoModel();
@@ -117,7 +115,7 @@ class StudentController extends Controller
 
         // ! add student
         $student = StudentModel::find($id);
-        $student->student_id = $request->student_id;
+        // $student->student_id = $request->student_id;
         $student->generation = $request->generation;
         $student->khmer_name = $request->khmer_name;
         $student->english_name = $request->english_name;

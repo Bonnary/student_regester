@@ -24,21 +24,67 @@
                             <form action="" method="POST">
                                 @csrf
                                 <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label>Sessions</label>
+                                                <select name="session_id" class="form-control">
+                                                    @foreach ($sessions as $se)
+                                                        <option value="{{ $se->id }}">
+                                                            {{ $se->session_name }}</option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
 
+                                            <div class="form-group">
+                                                <label>Room</label>
+                                                <select name="class_id" class="form-control">
+                                                    @foreach ($class as $cla)
+                                                        <option value="{{ $cla->id }}">
+                                                            {{ $cla->room }}</option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
 
+                                            <div class="form-group">
+                                                <label>Subject</label>
+                                                <select name="college_id" class="form-control">
+                                                    @foreach ($college as $coll)
+                                                        <option value="{{ $coll->id }}">
+                                                            {{ $coll->college_name }}</option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                        </div>
 
-                                    <select name="class_room" class="form-control">
-                                        @foreach ($class as $cla)
-                                            <option value="{{ $cla->room }}">
-                                                {{ $cla->room }}</option>
-                                        @endforeach
-                                    </select>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label>Student ID</label>
+                                                <input required name="student_id" type="text" class="form-control"
+                                                    placeholder="Student ID">
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Generation</label>
+                                                <input required name="generation" type="number" class="form-control"
+                                                    placeholder="Generation">
+                                            </div>
 
-                                    <div class="form-group">
-                                        <label>Student ID</label>
-                                        <input required name="student_id" type="text" class="form-control"
-                                            placeholder="Student ID">
+                                            <div class="form-group">
+                                                <label>Subject</label>
+                                                <select name="subject_id" class="form-control">
+                                                    @foreach ($subject as $sub)
+                                                        <option value="{{ $sub->id }}">
+                                                            {{ $sub->subject_name }}</option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                        </div>
                                     </div>
+
+
+
+
+
 
                                 </div>
 

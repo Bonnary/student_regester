@@ -11,23 +11,19 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('class_and_students', function (Blueprint $table) {
+        Schema::create('marks_grade', function (Blueprint $table) {
             $table->id();
-            $table->integer(
-                'student_id'
+            $table->string(
+                'name'
             );
             $table->integer(
-                'class_id'
+                'percent_from'
             );
             $table->integer(
-                'generation'
+                'percent_to'
             );
-            $table->integer(
-                'session_id'
-            );
-            $table->integer(
-                'subjects_and_colleges_id'
-            );
+            $table->integer('created_by');
+            $table->timestamps();
         });
     }
 
@@ -36,6 +32,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('class_and_students');
+        Schema::dropIfExists('marks_grade');
     }
 };

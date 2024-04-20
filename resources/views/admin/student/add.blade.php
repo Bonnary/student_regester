@@ -161,11 +161,7 @@
                                                 </div>
                                             </div>
 
-                                            <div class="form-group">
-                                                <label>Address</label>
-                                                <input name="address" type="text" class="form-control"
-                                                    placeholder="Address">
-                                            </div>
+
 
                                             <div class="form-group">
                                                 <label>Facebook/Email</label>
@@ -176,13 +172,13 @@
 
                                             <div class="row mt-4">
                                                 <div class="col-md-6">
-                                                    <label>Nationality</label>
+                                                    <label>Father Nationality</label>
                                                     <input name="father_nationality" type="text" class="form-control"
                                                         placeholder="Nationality">
                                                 </div>
 
                                                 <div class="col-md-6">
-                                                    <label>Occupation</label>
+                                                    <label>Father Occupation</label>
                                                     <input name="father_occupation" type="text" class="form-control"
                                                         placeholder="Occupation">
                                                 </div>
@@ -190,13 +186,13 @@
 
                                             <div class="row mt-3">
                                                 <div class="col-md-6">
-                                                    <label>Nationality</label>
+                                                    <label>Mother Nationality</label>
                                                     <input name="mother_nationality" type="text" class="form-control"
                                                         placeholder="Nationality">
                                                 </div>
 
                                                 <div class="col-md-6">
-                                                    <label>Occupation</label>
+                                                    <label>Mother Occupation</label>
                                                     <input name="mother_occupation" type="text" class="form-control"
                                                         placeholder="Occupation">
                                                 </div>
@@ -275,8 +271,7 @@
                                                 <div class="form-check form-check-inline pr-5">
                                                     <input class="form-check-input" type="radio"
                                                         name="subject_and_college" id="inlineRadio1" value="3|2">
-                                                    <label class="form-check-label" for="inlineRadio1">Finance and
-                                                        Banking</label>
+                                                    <label class="form-check-label" for="inlineRadio1">Networking</label>
                                                 </div>
                                             </div>
 
@@ -284,8 +279,7 @@
                                                 <div class="form-check form-check-inline pr-5">
                                                     <input class="form-check-input" type="radio"
                                                         name="subject_and_college" id="inlineRadio1" value="4|2">
-                                                    <label class="form-check-label" for="inlineRadio1">Development
-                                                        Economics</label>
+                                                    <label class="form-check-label" for="inlineRadio1">Programming</label>
                                                 </div>
                                             </div>
                                         </div>

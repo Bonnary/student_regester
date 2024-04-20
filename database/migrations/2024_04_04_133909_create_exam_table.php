@@ -11,9 +11,16 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('days', function (Blueprint $table) {
+        Schema::create('exam', function (Blueprint $table) {
             $table->id();
-            $table->string('day_name');
+            $table->string(
+                'name'
+            );
+            $table->string(
+            'note');
+            $table->integer('created_by');
+            $table->boolean('is_delete')->default(false);
+            $table->timestamps();
         });
     }
 
@@ -22,6 +29,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('days');
+        Schema::dropIfExists('exam');
     }
 };
