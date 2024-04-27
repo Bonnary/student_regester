@@ -4,8 +4,7 @@ create database name **student_register**
 ```
 cp .env.example .env
 composer install
-php artisan migrate:refresh
-php artisan db:seed
+php artisan migrate:refresh --seed
 ```
 <br>
 run
@@ -26,3 +25,11 @@ to start project
 
 - username: staff@gmail.com
 - password: password
+
+<br>
+
+run this in docker ```student_register container```
+```  
+pecl install zip
+php artisan migrate:refresh --seed
+```
