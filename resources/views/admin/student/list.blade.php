@@ -145,10 +145,12 @@
                                                 <td>{{ $getRecord[$i]->generation }}</td>
                                                 <td>
 
-                                                    <button type="button" class="btn btn-secondary" data-toggle="modal"
+                                                    {{-- <button type="button" class="btn btn-secondary" data-toggle="modal"
                                                         data-target="#popUp">
                                                         Detail
-                                                    </button>
+                                                    </button> --}}
+                                                    <a href="{{ url('admin/student/certificate/' . $getRecord[$i]->id) }}"
+                                                        class="btn btn-secondary">Certificate</a>
                                                     <a href="{{ url('admin/student/edit/' . $getRecord[$i]->id) }}"
                                                         class="btn btn-primary">Edit</a>
                                                     <a href="{{ url('admin/student/delete/' . $getRecord[$i]->id) }}"

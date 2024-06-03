@@ -16,6 +16,10 @@ class ClassAndStudentsController extends Controller
     function list()
     {
         $data['header_title'] = "Student and Class";
+        $data['getClass'] = StudentClass::getClassRaw();
+        $data['sessions'] = SessionsModel::getSession();
+        $data['subject'] = SubjectsModel::getSubject();
+        $data['college'] = CollegesModel::getCollege();
         $data['getRecord'] = ClassAndStudentsModel::getClassAndStudents();
 
 
@@ -25,6 +29,7 @@ class ClassAndStudentsController extends Controller
     function add()
     {
         $data['header_title'] = "Add Student to Class";
+
         $data['class'] = StudentClass::getClassRaw();
         $data['sessions'] = SessionsModel::getSession();
         $data['subject'] = SubjectsModel::getSubject();

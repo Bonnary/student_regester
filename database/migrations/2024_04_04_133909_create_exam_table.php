@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string(
                 'name'
             );
-            $table->string(
+            $table->text(
             'note');
             $table->integer('created_by');
             $table->boolean('is_delete')->default(false);

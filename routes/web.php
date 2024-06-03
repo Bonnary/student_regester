@@ -7,6 +7,7 @@ use App\Http\Controllers\ClassAndStudentsController;
 use App\Http\Controllers\ClassController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ExaminationsController;
+use App\Http\Controllers\PDFController;
 use App\Http\Controllers\StudentController;
 use Illuminate\Support\Facades\Route;
 
@@ -20,6 +21,9 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+
+
+
 // ! Auth
 Route::get('/', [AuthController::class, 'login']);
 Route::post('login', [AuthController::class, 'Authlogin']);
@@ -46,13 +50,22 @@ Route::group(['middleware' => 'admin'], function () {
     Route::post('admin/admin/edit/{id}', [AdminController::class, 'update']);
     // ! the only reason we use get and not post because we don't need Request $request
     Route::get('admin/admin/delete/{id}', [AdminController::class, 'delete']);
-
+    Route::get('admin/storage-link', function () {
+        $targetFolder = storage_path('app/public');
+        $linkFolder = $_SERVER['DOCUMENT_ROOT'] . '/storage';
+        if (!file_exists($linkFolder)) {
+            symlink($targetFolder, $linkFolder);
+        }
+    });
 });
 
 Route::group(['middleware' => 'staff'], function () {
     Route::get('staff/dashboard', [DashboardController::class, 'dashboard']);
-
 });
+
+
+
+
 
 // ! Class
 Route::get('admin/class/list', [ClassController::class, 'list']);
@@ -66,9 +79,11 @@ Route::get('admin/class/delete/{id}', [ClassController::class, 'delete']);
 Route::get('admin/student/list', [StudentController::class, 'list']);
 Route::get('admin/student/add', [StudentController::class, 'add']);
 Route::post('admin/student/add', [StudentController::class, 'insert']);
-Route::get( 'admin/student/edit/{id}', [StudentController::class, 'edit']);
+Route::get('admin/student/edit/{id}', [StudentController::class, 'edit']);
 Route::post('admin/student/edit/{id}', [StudentController::class, 'update']);
 Route::get('admin/student/delete/{id}', [StudentController::class, 'delete']);
+// ! PDF
+Route::get('admin/student/certificate/{id}', [StudentController::class, 'certificate']);
 
 // ! Student Class
 Route::get('admin/student-class/list', [ClassAndStudentsController::class, 'list']);

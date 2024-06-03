@@ -14,7 +14,9 @@ class ClassAndStudentsModel extends Model
 
     static function getClassAndStudents()
     {
-        $return = self::orderBy('id', 'desc');
+        $return = self::select('class_and_students.*')
+            ->join('subjects_and_colleges', 'subjects_and_colleges.id', '=', 'class_and_students.subjects_and_colleges_id')
+            ->orderBy('class_and_students.id', 'desc');
 
         if (!empty(Request::get('student_id'))) {
             $return = $return->where('student_id', '=', Request::get('student_id'));
@@ -23,6 +25,19 @@ class ClassAndStudentsModel extends Model
         if (!empty(Request::get('class_id'))) {
             $return = $return->where('class_id', '=', Request::get('class_id'));
         }
+
+        if (!empty(Request::get('session_id'))) {
+            $return = $return->where('session_id', '=', Request::get('session_id'));
+        }
+
+        if(!empty(Request::get('subject_id'))){
+            $return = $return->where('subjects_and_colleges.subject_id', '=', Request::get('subject_id'));
+        }
+
+        if(!empty(Request::get('college_id'))){
+            $return = $return->where('subjects_and_colleges.college_id', '=', Request::get('college_id'));
+        }
+
 
         $return = $return->paginate(20);
         return $return;

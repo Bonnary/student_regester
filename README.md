@@ -30,6 +30,10 @@ to start project
 
 run this in docker ```student_register container```
 ```  
-pecl install zip
+apt-get update && apt-get install -y git curl libpng-dev libonig-dev libxml2-dev libldap2-dev zip unzip libzip-dev && composer install && php artisan migrate:refresh --seed
+
 php artisan migrate:refresh --seed
 ```
+
+if image not loading run this
+``` php artisan storage:link ```

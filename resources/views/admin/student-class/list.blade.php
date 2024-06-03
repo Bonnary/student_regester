@@ -1,14 +1,13 @@
 @extends('layouts.master')
 
 @section('content')
-
-@php
-    use App\Models\SubjectsModel;
-    use App\Models\StudentClass;
-    use App\Models\SessionsModel;
-    use App\Models\SubjectsAndCollegesModel;
-    use App\Models\CollegesModel;
-@endphp
+    @php
+        use App\Models\SubjectsModel;
+        use App\Models\StudentClass;
+        use App\Models\SessionsModel;
+        use App\Models\SubjectsAndCollegesModel;
+        use App\Models\CollegesModel;
+    @endphp
     <div class="content-wrapper">
         <!-- Content Header (Page header) -->
         <section class="content-header">
@@ -48,16 +47,54 @@
                                                 class="form-control" placeholder="ID">
                                         </div>
                                         <div class="form-group col-md-3">
-                                            <label>Class Room</label>
-                                            <input name="class_room" value="{{ Request::get('class_room') }}" type="text"
-                                                class="form-control" placeholder="English name">
+                                            <label>Subject</label>
+                                            <select class="form-control" name="subject_id">
+                                                <option value="">Select</option>
+                                                @foreach ($subject as $sub)
+                                                    <option {{ Request::get('subject_id') == $sub->id ? 'selected' : '' }}
+                                                        value="{{ $sub->id }}">{{ $sub->subject_name }}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+
+                                        <div class="form-group col-md-3">
+                                            <label>College</label>
+                                            <select class="form-control" name="college_id">
+                                                <option value="">Select</option>
+                                                @foreach ($college as $coll)
+                                                    <option {{ Request::get('college_id') == $coll->id ? 'selected' : '' }}
+                                                        value="{{ $coll->id }}">{{ $coll->college_name }}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+
+                                        <div class="form-group col-md-3">
+                                            <label>Class</label>
+                                            <select class="form-control" name="class_id">
+                                                <option value="">Select</option>
+                                                @foreach ($getClass as $class)
+                                                    <option {{ Request::get('class_id') == $class->id ? 'selected' : '' }}
+                                                        value="{{ $class->id }}">{{ $class->room }}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+
+                                        <div class="form-group col-md-3">
+                                            <label>Sessions</label>
+                                            <select class="form-control" name="session_id">
+                                                <option value="">Select</option>
+                                                @foreach ($sessions as $sess)
+                                                    <option {{ Request::get('session_id') == $sess->id ? 'selected' : '' }}
+                                                        value="{{ $sess->id }}">{{ $sess->session_name }}</option>
+                                                @endforeach
+                                            </select>
                                         </div>
 
                                         <div class="form-group col-md-3">
                                             <button class="btn btn-primary" type="submit"
                                                 style="margin-top: 30px">Search</button>
-                                            <a href="{{ url('admin/student-class/list') }}" class="btn btn-success" type="submit"
-                                                style="margin-top: 30px">Clear</a>
+                                            <a href="{{ url('admin/student-class/list') }}" class="btn btn-success"
+                                                type="submit" style="margin-top: 30px">Clear</a>
                                         </div>
                                     </div>
                                 </div>
@@ -88,15 +125,24 @@
                                     </thead>
                                     <tbody>
                                         @for ($i = 0; $i < $getRecord->total(); $i++)
-                                        @php
-                                            $class_room = StudentClass::getSingleClass($getRecord[$i]->class_id)->room;
-                                            $session = SessionsModel::getSingleSessionByID($getRecord[$i]->session_id)->session_name;
-                                            // dd($getRecord[$i]->subjects_and_colleges_id);
-                                            $subject_and_college = SubjectsAndCollegesModel::getSingleSubjectAndCollegeByID($getRecord[$i]->subjects_and_colleges_id);
-                                            // dd($subject_and_college);
-                                            $subject = SubjectsModel::getSubjectByID($subject_and_college->subject_id)->subject_name;
-                                            $college = CollegesModel::getCollegeName($subject_and_college->college_id);
-                                        @endphp
+                                            @php
+                                                $class_room = StudentClass::getSingleClass($getRecord[$i]->class_id)
+                                                    ->room;
+                                                $session = SessionsModel::getSingleSessionByID(
+                                                    $getRecord[$i]->session_id,
+                                                )->session_name;
+                                                // dd($getRecord[$i]->subjects_and_colleges_id);
+                                                $subject_and_college = SubjectsAndCollegesModel::getSingleSubjectAndCollegeByID(
+                                                    $getRecord[$i]->subjects_and_colleges_id,
+                                                );
+                                                // dd($subject_and_college);
+                                                $subject = SubjectsModel::getSubjectByID(
+                                                    $subject_and_college->subject_id,
+                                                )->subject_name;
+                                                $college = CollegesModel::getCollegeName(
+                                                    $subject_and_college->college_id,
+                                                );
+                                            @endphp
                                             <tr>
                                                 <td>{{ $i + 1 }}</td>
                                                 <td>{{ $class_room }}</td>

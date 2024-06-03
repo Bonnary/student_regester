@@ -34,8 +34,9 @@
                                     </div>
                                     <div class="form-group">
                                         <label>Full Name</label>
-                                        <input name="name" type="text" value="{{ old('email', $getRecord->name) }}"
-                                            class="form-control" placeholder="Full Name">
+                                        <input required name="name" type="text"
+                                            value="{{ old('email', $getRecord->name) }}" class="form-control"
+                                            placeholder="Full Name">
                                     </div>
                                     <div class="form-group">
                                         <label>Password</label>

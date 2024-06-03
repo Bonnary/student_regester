@@ -55,11 +55,15 @@ class AdminController extends Controller
     function update($id, Request $request)
     {
         // ! add constraints to input
-       
+        // ! check if the email ready exist
+        // request()->validate([
+        //     // ? email mast be correct and unique
+        //     'email' => 'required|email|unique:users,email,' . $id
+        // ]);
         $user = User::getSingleAccount($id);
         // ! trim is for remove space from start and end of the input and alse \n and \t
         $user->name = trim($request->name);
-        $user->email = trim($request->email);
+        // $user->email = trim($request->email);
         if (!empty($request->password)) {
 
             $user->password = Hash::make($request->password);

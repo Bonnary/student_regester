@@ -99,7 +99,9 @@ class StudentController extends Controller
     {
 
         // ! add subject
-        $subect_and_college_id = SubjectsAndCollegesModel::upsertDB($request->subject_id, $request->college_id);
+        list($subject_ID, $college_ID) = explode('|', $request->subject_and_college);
+        $subect_and_college_id =
+            SubjectsAndCollegesModel::upsertDB($subject_ID, $college_ID);
 
         // ! add parent info
         $parents_info = new ParentsInfoModel();
@@ -168,6 +170,7 @@ class StudentController extends Controller
         $data['studentJobData'] = StudentJobsModel::getSingleStudentJobByID($student->student_job_id);
         $data['sessionData'] = SessionsModel::getSingleSessionByID($student->session_id);
         $subjectsAndColleges = SubjectsAndCollegesModel::getSingleSubjectAndCollegeByID($student->subjects_and_colleges_id);
+        $data['subjectsAndCollegesValue'] = $subjectsAndColleges->subject_id . '|' . $subjectsAndColleges->college_id;
         $data['collegeData'] = CollegesModel::getCollegeByID($subjectsAndColleges->college_id);
         $data['subjectData'] = SubjectsModel::getSubjectByID($subjectsAndColleges->subject_id);
         $data['parentsInfoData'] = ParentsInfoModel::getParentsInfoByID($student->parentInfo_id);
@@ -183,5 +186,15 @@ class StudentController extends Controller
         $student->is_active = false;
         $student->save();
         return redirect('admin/student/list')->with('success', 'Student delete successfully.');
+    }
+
+    function certificate ($id) {
+        $student = StudentModel::getSingleStudent($id);
+        $subjectsAndColleges = SubjectsAndCollegesModel::getSingleSubjectAndCollegeByID($student->subjects_and_colleges_id);
+        $data['collegeData'] = CollegesModel::getCollegeByID($subjectsAndColleges->college_id);
+        $data['subjectData'] = SubjectsModel::getSubjectByID($subjectsAndColleges->subject_id);
+        $data['enrollment_typeData'] =  EnrollmentTypesModel::getSingleEnrollmentTypeByID($student->enrollment_type_id);
+        $data['student'] = $student;
+        return view('certificate', $data);
     }
 }
