@@ -1,8 +1,4 @@
-FROM php:8.3-apache
-
-# Arguments defined in docker-compose.yml
-ARG user
-ARG uid
+FROM php:8.2-fpm
 
 # Install system dependencies
 RUN apt-get update && apt-get install -y \
@@ -12,42 +8,28 @@ RUN apt-get update && apt-get install -y \
     libonig-dev \
     libxml2-dev \
     zip \
-    unzip
+    unzip \
+    libzip-dev # Add this line to install the libzip library needed for the PHP Zip extension
 
-# Clear cache
-RUN apt-get clean && rm -rf /var/lib/apt/lists/*
+# install composer
+RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
 # Install PHP extensions
-RUN docker-php-ext-install pdo_mysql mbstring exif pcntl bcmath gd
-
-# Get latest Composer
-COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
+RUN docker-php-ext-install pdo_mysql mbstring exif pcntl bcmath gd zip # Add 'zip' here to install the PHP Zip extension
 
 # Set up node and npm
-
 RUN curl -sL https://deb.nodesource.com/setup_18.x | bash
 RUN apt-get update && apt-get -y install nodejs
 
 # Set working directory
-WORKDIR /var/www
+WORKDIR /app
+COPY . /app
 
-RUN apt-get update && apt-get install -y \
-        libfreetype6-dev \
-        libjpeg62-turbo-dev \
-        libpng-dev \
-    && docker-php-ext-configure gd --with-freetype --with-jpeg \
-    && docker-php-ext-install -j$(nproc) gd
+# Allow Composer plugins for root user (optional and not recommended)
+ENV COMPOSER_ALLOW_SUPERUSER=1
 
-WORKDIR /var/www/html
-COPY . .
+RUN composer install && php artisan optimize:clear && \
+php artisan storage:link
 
-#Modify php.ini setings
-
-RUN touch /usr/local/etc/php/conf.d/uploads.ini \
-    && echo "upload_max_filesize = 10M;" >> /usr/local/etc/php/conf.d/uploads.ini
-
-#Serve the application
-
-RUN composer install
-RUN npm install
-CMD php artisan migrate --force && php artisan storage:link && php artisan serve --host=0.0.0.0 --port=$PORT
+CMD php artisan serve --host=0.0.0.0 --port=8181
+EXPOSE 8181
