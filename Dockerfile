@@ -12,7 +12,7 @@ RUN apt-get update && apt-get install -y \
     libzip-dev # Add this line to install the libzip library needed for the PHP Zip extension
 
 # install composer
-RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+COPY --from=composer:latest /usr/bin/composer /usr/local/bin/composer
 
 # Install PHP extensions
 RUN docker-php-ext-install pdo_mysql mbstring exif pcntl bcmath gd zip # Add 'zip' here to install the PHP Zip extension
