@@ -70,7 +70,7 @@
                                             </div>
 
                                             <div class="form-group">
-                                                <label>Subject</label>
+                                                <label>Major</label>
                                                 <select name="subject_id" class="form-control">
                                                     @foreach ($subject as $sub)
                                                         <option value="{{ $sub->id }}">
