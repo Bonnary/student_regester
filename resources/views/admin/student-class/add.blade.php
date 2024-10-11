@@ -47,7 +47,7 @@
                                             </div>
 
                                             <div class="form-group">
-                                                <label>Subject</label>
+                                                <label>College</label>
                                                 <select name="college_id" class="form-control">
                                                     @foreach ($college as $coll)
                                                         <option value="{{ $coll->id }}">
